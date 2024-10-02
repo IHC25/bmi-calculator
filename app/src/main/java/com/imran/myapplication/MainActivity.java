@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     EditText edWeight,edFeet,edInches;
     Button calculateButton;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        //Linking with xml
         edWeight = findViewById(R.id.edWeight);
         edFeet = findViewById(R.id.edFeet);
         edInches = findViewById(R.id.edInches);
@@ -37,18 +40,21 @@ public class MainActivity extends AppCompatActivity {
         resultDisplay = findViewById(R.id.resultDisplay);
         bmiLevel = findViewById(R.id.bmiLevel);
 
+        //Functionality of calculate button
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String sWeight, sFeet, sInches;
-                Double userWeight,userFeet, userInches, userHeight, bmiResult;
+                double userWeight,userFeet, userInches, userHeight, bmiResult;
 
                 sWeight = edWeight.getText().toString();
                 sFeet = edFeet.getText().toString();
                 sInches = edInches.getText().toString();
 
 
+                //error handling of user clicking Calculate button without filling required information
                 if(sWeight.isEmpty() || sFeet.isEmpty() || sInches.isEmpty()){
+                    //showing user a toast message to fill the required info
                     Toast.makeText(MainActivity.this, "All information not given", Toast.LENGTH_SHORT).show();
                 } else {
                     userWeight = Double.parseDouble(sWeight);
@@ -57,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
                     userHeight = (0.3048 * userFeet) + (0.0254 * userInches);
 
                     bmiResult = userWeight/(userHeight*userHeight);
-                    String bmiResultRounded = String.format("%.1f",bmiResult);
+                    Locale Locale = java.util.Locale.US;
+                    String bmiResultRounded = String.format(Locale,"%.1f",bmiResult);
 
                     resultDisplay.setText(bmiResultRounded);
 
+                    //Showing user their BMI level
                     if(bmiResult<18.5){
                         bmiLevel.setText("Underweight");
                         bmiLevel.setTextColor(getResources().getColor(R.color.light_green));
