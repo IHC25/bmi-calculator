@@ -116,6 +116,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/calculateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Calculate"
@@ -154,7 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:textColor="#4CAF50"
+        android:textColor="@color/green"
         android:text="Normal"
         android:textStyle="bold"
         android:textSize="30sp"
