@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,36 +47,41 @@ public class MainActivity extends AppCompatActivity {
                 sFeet = edFeet.getText().toString();
                 sInches = edInches.getText().toString();
 
-                userWeight = Double.parseDouble(sWeight);
-                userFeet = Double.parseDouble(sFeet);
-                userInches = Double.parseDouble(sInches);
-                userHeight = (0.3048 * userFeet) + (0.0254 * userInches);
 
-                bmiResult = userWeight/(userHeight*userHeight);
-                String bmiResultRounded = String.format("%.1f",bmiResult);
-
-                resultDisplay.setText(bmiResultRounded);
-
-                if(bmiResult<18.5){
-                    bmiLevel.setText("Underweight");
-                    bmiLevel.setTextColor(getResources().getColor(R.color.light_green));
-                    bmiLevel.setVisibility(View.VISIBLE);
-                } else if (bmiResult>18.5 && bmiResult<=24.9) {
-                    bmiLevel.setText("Normal");
-                    bmiLevel.setTextColor(getResources().getColor(R.color.green));
-                    bmiLevel.setVisibility(View.VISIBLE);
-                } else if (bmiResult>24.9 && bmiResult<=29.9) {
-                    bmiLevel.setText("Excess Weight");
-                    bmiLevel.setTextColor(getResources().getColor(R.color.orange));
-                    bmiLevel.setVisibility(View.VISIBLE);
-                } else if (bmiResult>29.9 && bmiResult<=34.9) {
-                    bmiLevel.setText("Obesity");
-                    bmiLevel.setTextColor(getResources().getColor(R.color.light_red));
-                    bmiLevel.setVisibility(View.VISIBLE);
+                if(sWeight.isEmpty() || sFeet.isEmpty() || sInches.isEmpty()){
+                    Toast.makeText(MainActivity.this, "All information not given", Toast.LENGTH_SHORT).show();
                 } else {
-                    bmiLevel.setText("Extremely Obese");
-                    bmiLevel.setTextColor(getResources().getColor(R.color.red));
-                    bmiLevel.setVisibility(View.VISIBLE);
+                    userWeight = Double.parseDouble(sWeight);
+                    userFeet = Double.parseDouble(sFeet);
+                    userInches = Double.parseDouble(sInches);
+                    userHeight = (0.3048 * userFeet) + (0.0254 * userInches);
+
+                    bmiResult = userWeight/(userHeight*userHeight);
+                    String bmiResultRounded = String.format("%.1f",bmiResult);
+
+                    resultDisplay.setText(bmiResultRounded);
+
+                    if(bmiResult<18.5){
+                        bmiLevel.setText("Underweight");
+                        bmiLevel.setTextColor(getResources().getColor(R.color.light_green));
+                        bmiLevel.setVisibility(View.VISIBLE);
+                    } else if (bmiResult>18.5 && bmiResult<=24.9) {
+                        bmiLevel.setText("Normal");
+                        bmiLevel.setTextColor(getResources().getColor(R.color.green));
+                        bmiLevel.setVisibility(View.VISIBLE);
+                    } else if (bmiResult>24.9 && bmiResult<=29.9) {
+                        bmiLevel.setText("Excess Weight");
+                        bmiLevel.setTextColor(getResources().getColor(R.color.orange));
+                        bmiLevel.setVisibility(View.VISIBLE);
+                    } else if (bmiResult>29.9 && bmiResult<=34.9) {
+                        bmiLevel.setText("Obesity");
+                        bmiLevel.setTextColor(getResources().getColor(R.color.light_red));
+                        bmiLevel.setVisibility(View.VISIBLE);
+                    } else {
+                        bmiLevel.setText("Extremely Obese");
+                        bmiLevel.setTextColor(getResources().getColor(R.color.red));
+                        bmiLevel.setVisibility(View.VISIBLE);
+                    }
                 }
 
             }
