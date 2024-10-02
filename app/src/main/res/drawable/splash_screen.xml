@@ -5,6 +5,7 @@
         />
     <item>
         <bitmap android:gravity="center"
-            android:src="@drawable/bmi_logo_bgremoved"/>
+            android:src="@drawable/bmi_logo_bgremoved"
+            />
     </item>
 </layer-list>
