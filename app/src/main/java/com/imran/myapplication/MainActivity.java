@@ -19,7 +19,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     EditText edWeight,edFeet,edInches;
     Button calculateButton;
-    TextView resultDisplay,bmiLevel, bmiComments;
+    TextView resultDisplay,bmiLevel, bmiComments, requiredWeight;
     ImageView footerImage;
 
     @Override
@@ -43,13 +43,14 @@ public class MainActivity extends AppCompatActivity {
         bmiLevel = findViewById(R.id.bmiLevel);
         bmiComments = findViewById(R.id.bmiComments);
         footerImage = findViewById(R.id.footerImage);
+        requiredWeight = findViewById(R.id.requiredWeight);
 
         //Functionality of calculate button
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String sWeight, sFeet, sInches;
-                double userWeight,userFeet, userInches, userHeight, bmiResult;
+                double userWeight,userFeet, userInches, userHeight, bmiResult, weightRequired;
 
                 sWeight = edWeight.getText().toString();
                 sFeet = edFeet.getText().toString();
@@ -75,6 +76,23 @@ public class MainActivity extends AppCompatActivity {
 
                     footerImage.setVisibility(View.GONE);
 
+                    //required weight calculation
+                    if (bmiResult<18.5){
+                        weightRequired = (18.5 - bmiResult)*userHeight*userHeight;
+                        String weightRequiredRounded = String.format(Locale,"%.1f",weightRequired);
+                        requiredWeight.setText("Gain "+weightRequiredRounded+" kg");
+                        requiredWeight.setVisibility(View.VISIBLE);
+                    } else if (bmiResult>24.9){
+                        weightRequired = (bmiResult - 24.9)*userHeight*userHeight;
+                        String weightRequiredRounded = String.format(Locale,"%.1f",weightRequired);
+                        requiredWeight.setText("Lose "+weightRequiredRounded+" kg");
+                        requiredWeight.setVisibility(View.VISIBLE);
+                    } else {
+                        requiredWeight.setText("Maintain Current Weight");
+                        requiredWeight.setVisibility(View.VISIBLE);
+                    }
+
+
                     String underWeightAdvice, normalWeightAdvice, excessWeightAdvice, obesityAdvice;
                     underWeightAdvice = "A BMI of less than 18.5 indicates that you are underweight, so you may need to put on some weight. You are recommended to ask your doctor or a dietitian for advice.";
                     normalWeightAdvice = "A BMI of 18.5-24.9 indicates that you are at a healthy weight for your height. By maintaining a healthy weight, you lower your risk of developing serious health problems.";
@@ -88,12 +106,13 @@ public class MainActivity extends AppCompatActivity {
                         bmiLevel.setVisibility(View.VISIBLE);
                         bmiComments.setVisibility(View.VISIBLE);
 
-                    } else if (bmiResult>18.5 && bmiResult<=24.9) {
+                    } else if (bmiResult>=18.5 && bmiResult<=24.9) {
                         bmiLevel.setText("Normal");
                         bmiComments.setText(normalWeightAdvice);
                         bmiLevel.setTextColor(getResources().getColor(R.color.green));
                         bmiLevel.setVisibility(View.VISIBLE);
                         bmiComments.setVisibility(View.VISIBLE);
+
                     } else if (bmiResult>24.9 && bmiResult<=29.9) {
                         bmiLevel.setText("Excess Weight");
                         bmiComments.setText(excessWeightAdvice);

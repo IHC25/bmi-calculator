@@ -174,9 +174,23 @@
         android:visibility="gone"
         android:textColor="#5B5B5B"
         android:text=""
+        android:maxLines="4"
         android:textStyle="italic"
         android:textSize="15sp"
         android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/requiredWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textColor="@color/light_blue"
+        android:text=""
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_margin="10dp"
         />
 
     <ImageView
