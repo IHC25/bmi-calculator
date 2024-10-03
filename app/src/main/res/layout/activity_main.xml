@@ -118,6 +118,7 @@
 
     </LinearLayout>
 
+    <!--BMI Calculation button and Results shown here  -->
     <Button
         android:id="@+id/calculateButton"
         android:layout_width="match_parent"
@@ -157,19 +158,34 @@
         android:id="@+id/bmiLevel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:textColor="@color/green"
         android:text="Normal"
         android:textStyle="bold"
         android:textSize="30sp"
         android:gravity="center"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         />
-    <ImageView
+
+    <TextView
+        android:id="@+id/bmiComments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/bmi_levels"
+        android:visibility="gone"
+        android:textColor="#5B5B5B"
+        android:text=""
+        android:textStyle="italic"
+        android:textSize="15sp"
+        android:gravity="center"
+        />
+
+    <ImageView
+        android:id="@+id/footerImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/overweight_man"
         android:scaleType="centerCrop"
+        android:padding="20dp"
         />
 
 
