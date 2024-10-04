@@ -59,9 +59,32 @@ public class MainActivity extends AppCompatActivity {
 
                 //error handling of user clicking Calculate button without filling required information
                 if(sWeight.isEmpty() || sFeet.isEmpty() || sInches.isEmpty()){
-                    //showing user a toast message to fill the required info
-                    Toast.makeText(MainActivity.this, "All information not given", Toast.LENGTH_SHORT).show();
+                    //setting error message for different fields
+                    if(sWeight.isEmpty() && sFeet.isEmpty() && sInches.isEmpty()){
+                        edWeight.setError("Please enter weight");
+                        edFeet.setError("Please enter height");
+                        edInches.setError("Please enter height");
+                    }
+                    else if (sWeight.isEmpty() && sFeet.isEmpty()){
+                        edWeight.setError("Please enter weight");
+                        edFeet.setError("Please enter height");
+                    }else if (sFeet.isEmpty() && sInches.isEmpty()){
+                        edFeet.setError("Please enter your height");
+                        edInches.setError("Please enter your height");
+                    } else if (sWeight.isEmpty() && sInches.isEmpty()) {
+                        edWeight.setError("Please enter weight");
+                        edInches.setError("Please enter your height");
+                    } else {
+                        if (sWeight.isEmpty()){
+                            edWeight.setError("Please enter weight");
+                        } else if (sFeet.isEmpty()){
+                            edFeet.setError("Please enter height");
+                        } else {
+                            edInches.setError("Please enter height");
+                        }
+                    }
                 } else {
+                    //--------------------------------------------------------------------------------------------------
                     userWeight = Double.parseDouble(sWeight);
                     userFeet = Double.parseDouble(sFeet);
                     userInches = Double.parseDouble(sInches);
@@ -132,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         bmiLevel.setVisibility(View.VISIBLE);
                         bmiComments.setVisibility(View.VISIBLE);
                     }
+                    //-------------------------------------------------------------------------------------------
                 }
 
             }
