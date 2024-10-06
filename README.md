@@ -5,7 +5,6 @@ Key Features of the BMI Calculator:
 Clear and minimalistic design for quick calculations.
 
 - Calculates BMI based on height and weight.
-Supports both metric (cm, kg) and imperial (inches, lbs) units.
 
 - Displays BMI value with a quick health status (Underweight, Normal weight, Overweight, or Obese) based on World Health Organization (WHO) guidelines.
 Offers brief tips or health recommendations based on the result.
