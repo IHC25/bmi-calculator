@@ -8,8 +8,6 @@ Clear and minimalistic design for quick calculations.
 
 - Displays BMI value with a quick health status (Underweight, Normal weight, Overweight, or Obese) based on World Health Organization (WHO) guidelines.
 Offers brief tips or health recommendations based on the result.
-
-- Easily switch between metric and imperial systems for height and weight.
   
 - Instant BMI result as soon as the user enters their information.
 Responsive Design:
